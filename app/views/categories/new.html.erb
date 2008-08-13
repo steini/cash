@@ -1,0 +1,29 @@
+<% if @categories.size == 0 %>
+No categories available, please create some!
+<%- end -%>
+
+<ul>
+<% @categories.each do |category| %>
+    <li>
+        <%= category.title %>
+        <%=  link_to "löschen", category_path(category), :method => "delete" %>
+    </li>
+<% end %>
+</ul>
+
+<h1>New category</h1>
+
+<%= error_messages_for :category %>
+
+<%- form_for(@category) do |f| -%>
+
+    <p>
+      <b>Category</b><br />
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <%= f.submit "Speichern" %>
+    </p>
+
+<%- end -%>

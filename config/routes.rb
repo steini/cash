@@ -1,8 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :users
-
   map.resource :session
 
+  map.resources :entries
+  map.resources :categories
+  
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -41,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default routes as the lowest priority.
 
-  map.login '/login', :controller => "sessions", :action => 'new'
+  map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
   map.root :controller => "home"
