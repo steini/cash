@@ -1,0 +1,26 @@
+<h1>Edit cash entry</h1>
+
+<%= error_messages_for :entry %>
+
+<% form_for(@entry) do |f| %>
+
+    <p>
+      <b>Titel</b><br />
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <b>Kategorie</b><br />
+      <%= f.collection_select "category_id", @categories, :id, :title %>
+    </p>
+
+    <p>
+      <b>Betrag</b><br />
+      <%= f.text_field :amount %>
+    </p>
+
+    <p>
+      <%= f.submit "Speichern" %>
+    </p>
+
+<% end %>

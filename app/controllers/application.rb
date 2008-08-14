@@ -15,4 +15,15 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  def balance_style income, spending
+    
+    if income - spending < 0 
+      style = "style=\"color:red\""
+    else
+      style = "style=\"color:green\""
+    end
+    style
+  end
+  
 end

@@ -2,3 +2,79 @@
     <li><%= link_to "create cash entry", new_entry_url %></li>
     <li><%= link_to "manage categories", new_category_path %></li>
 </ul>
+
+<h2>Trend</h2>
+
+
+<h2>Ausgaben und Einnahmen gesamt</h2>
+<table border="1" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>Einahmen:</td>
+      <td><%= @total_income %></td>
+    </tr>
+    <tr>
+      <td>Ausgaben:</td>
+      <td><%= @total_spending %></td>
+    </tr>
+    <tr>
+      <td>Differenz:</td>
+      <td<%= balance_style_by_amount @total_spending + @total_income %>><%= @total_spending + @total_income %></td>
+    </tr>
+</table>
+
+<h2>Ausgaben und Einahmen der letzten 12 Monate</h2>
+<table border="1" cellpadding="0" cellspacing="0">
+  <thead>
+    <th></th>
+    <%- @labels.each do |label| -%>
+      <th><%= label %></th>
+    <%- end -%>
+  </thead>
+  <tr>
+    <td>Einnahmen:</td>
+    <%- @incomes.each do |income| -%>
+      <td style="color:green"><%= income %></td>
+    <%- end -%>
+  </tr>
+  <tr>
+    <td>Ausgaben:</td>
+    <%- @spendings.each do |spending| -%>
+      <td style="color:red"><%= spending %></td>
+    <%- end -%>
+  </tr>
+  <tr>
+    <td>Differenz:</td>
+    <%- @diffs.each do |diff| -%>
+        <td<%= balance_style_by_amount diff %>><%= diff %></td>
+    <%- end -%>
+    </tr>
+</table>
+
+
+<h2>letzte Einträge</h2>
+<%- if @entries.size == 0 -%>
+  <strong>keine einträge vorhanden</strong>
+<%- else -%>
+  <table border="1" cellpadding="0" cellspacing="0">
+    <thead>
+        <th>besschreibung</th>
+        <th>betrag</th>
+        <th>kategorie</th>
+        <th>wer?</th>
+        <th>wann?</th>
+        <th>bearbeiten</th>
+        <th>löschen</th>
+    </thead>
+    <%- @entries.each do |entry| -%>
+      <tr>
+        <td><%=h entry.title %></td>
+        <td><%= entry.amount %></td>
+        <td><%= entry.category.title %></td>
+        <td><%= entry.user.login %></td>
+        <td><%= time_ago_in_words entry.created_at %> ago</td>
+        <td><%= link_to "bearbeiten", edit_entry_url(entry.id) %></td>
+        <td><%= link_to "löschen", entry_path(entry), :method => "delete" %></td>
+      </tr>
+    <%- end -%>
+  </table>
+<%- end -%>
