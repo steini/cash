@@ -9,16 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080813135155) do
-
-  create_table "cash_entries", :force => true do |t|
-    t.integer  "user_id",     :limit => 11
-    t.integer  "amount",      :limit => 11
-    t.string   "title"
-    t.integer  "category_id", :limit => 11
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20080929205824) do
 
   create_table "categories", :force => true do |t|
     t.string   "title"
@@ -29,10 +20,11 @@ ActiveRecord::Schema.define(:version => 20080813135155) do
   create_table "entries", :force => true do |t|
     t.integer  "user_id",     :limit => 11
     t.integer  "category_id", :limit => 11
-    t.integer  "amount",      :limit => 11
+    t.decimal  "amount",                    :precision => 8, :scale => 2
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
   end
 
   create_table "users", :force => true do |t|

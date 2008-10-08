@@ -3,7 +3,7 @@ class HomeController < ApplicationController
 
   def index
 
-    @entries = Entry.find(:all, :limit => 20)
+    @entries = Entry.find(:all, :limit => 20, :order => "created_at DESC")
     
     @labels = []
     @incomes = []
@@ -19,8 +19,8 @@ class HomeController < ApplicationController
 
     dates.each do |date|
         @labels << date.month.to_s + "/" + date.year.to_s
-        @incomes << Entry.sum(:amount, :conditions => ["amount > 0 and month(created_at) = ? and year(created_at) = ?", date.month, date.year])
-        @spendings << Entry.sum(:amount, :conditions => ["amount < 0 and month(created_at) = ? and year(created_at) = ?", date.month, date.year])
+        @incomes << Entry.sum(:amount, :conditions => ["amount > 0 and month(date) = ? and year(date) = ?", date.month, date.year])
+        @spendings << Entry.sum(:amount, :conditions => ["amount < 0 and month(date) = ? and year(date) = ?", date.month, date.year])
         @diffs << @spendings.last + @incomes.last
     end
     

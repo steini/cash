@@ -20,6 +20,11 @@
     </p>
 
     <p>
+      <b>Datum:</b>
+      <%= date_select("entry", "date", :order => [:day, :month, :year]) %>
+    </p>
+
+    <p>
       <%= f.submit "Speichern" %>
     </p>
 

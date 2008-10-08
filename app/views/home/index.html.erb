@@ -71,7 +71,7 @@
         <td><%= entry.amount %></td>
         <td><%= entry.category.title %></td>
         <td><%= entry.user.login %></td>
-        <td><%= time_ago_in_words entry.created_at %> ago</td>
+        <td><%= entry.date %></td>
         <td><%= link_to "bearbeiten", edit_entry_url(entry.id) %></td>
         <td><%= link_to "löschen", entry_path(entry), :method => "delete" %></td>
       </tr>
