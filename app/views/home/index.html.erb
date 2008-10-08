@@ -3,11 +3,8 @@
     <li><%= link_to "manage categories", new_category_path %></li>
 </ul>
 
-<h2>Trend</h2>
-
-
 <h2>Ausgaben und Einnahmen gesamt</h2>
-<table border="1" cellpadding="0" cellspacing="0">
+<table border="1" cellpadding="2" cellspacing="0">
     <tr>
       <td>Einahmen:</td>
       <td><%= @total_income %></td>
@@ -23,7 +20,7 @@
 </table>
 
 <h2>Ausgaben und Einahmen der letzten 12 Monate</h2>
-<table border="1" cellpadding="0" cellspacing="0">
+<table border="1" cellpadding="2" cellspacing="0">
   <thead>
     <th></th>
     <%- @labels.each do |label| -%>
@@ -55,7 +52,7 @@
 <%- if @entries.size == 0 -%>
   <strong>keine einträge vorhanden</strong>
 <%- else -%>
-  <table border="1" cellpadding="0" cellspacing="0">
+  <table border="1" cellpadding="2" cellspacing="0">
     <thead>
         <th>besschreibung</th>
         <th>betrag</th>

@@ -1,3 +1,6 @@
+<% if logged_in? %>
 <ul>
-  <li><%= link_to "Home", :controller => "home" %></li>  
+  <li><%= link_to "home", :controller => "home" %></li>
+  <li><%= link_to "logout", logout_path %></li>
 </ul>
+<% end %>

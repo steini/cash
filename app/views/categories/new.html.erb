@@ -2,14 +2,15 @@
 No categories available, please create some!
 <%- end -%>
 
-<ul>
+<ul id="categorylist">
 <% @categories.each do |category| %>
     <li>
-        <%= category.title %>
-        <%=  link_to "löschen", category_path(category), :method => "delete" %>
+        <p><%= category.title %></p>
     </li>
 <% end %>
 </ul>
+
+<br style="clear: both;" />
 
 <h1>New category</h1>
 

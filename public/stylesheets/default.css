@@ -1,0 +1,27 @@
+body {
+    margin:50px 0px; padding:0px;
+    text-align:center;
+    font-family: Arial, Helvetica;
+    font-size: 12px;
+}
+
+#content {
+    width:800px;
+    margin:0px auto;
+    text-align:left;
+    padding:15px;
+    border:1px dashed #333;
+    background-color:#eee;
+}
+
+#categorylist li {
+    clear: both;
+}
+
+#categorylist li p {
+    display: block;
+    width: 200px;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
