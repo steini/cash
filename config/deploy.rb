@@ -9,9 +9,6 @@ set :use_sudo, false
 
 default_run_options[:pty] = true
 
-set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
-set :runner, nil
-
 set :scm, "git"
 set :branch, "master"
 set :repository, "git://github.com/steini/cash.git"

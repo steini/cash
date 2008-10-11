@@ -3,6 +3,9 @@ set :domain, "danielsteiner.de"
 
 set :user, 'steini'
 
+set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
+set :runner, nil
+
 role :web, domain
 role :app, domain
 role :db, domain, :primary => true
