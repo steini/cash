@@ -16,10 +16,11 @@ set :scm, "git"
 set :branch, "master"
 set :repository, "git://github.com/steini/cash.git"
 set :keep_releases, 5
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
+#set :scm_verbose, false
 
-namespace :deploy do
-  task :restart do
-    restart_mongrel_cluster
-  end
-end
+#namespace :deploy do
+#  task :restart do
+#    restart_mongrel_cluster
+#  end
+#end
