@@ -1,4 +1,4 @@
-cwd: /path/to/my/rails/app/current
+cwd: /var/www/apps/cash/current
 log_file: log/mongrel.log
 port: "7000"
 environment: production
