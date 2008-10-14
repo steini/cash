@@ -19,7 +19,7 @@ namespace "db" do
     dir = Dir.new(backup_base)
     all_backups = dir.entries.sort.reverse.delete_if { |x| ! (x =~ /gz$/) }
 
-    max_backups = ENV["MAX"] || 5
+    max_backups = ENV["MAX"] || 15
 
     unwanted_backups = all_backups[max_backups.to_i..-1] || []
 
