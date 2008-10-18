@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+    @entry.amount = "- "
     @categories = Category.find(:all)
   end
   
