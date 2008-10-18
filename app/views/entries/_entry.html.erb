@@ -1,0 +1,6 @@
+<td style="color:#fff;background-color:<%= (entry.amount > 0) ? "green" : "red" %>"><%= entry.date %></td>
+<td style="color:#fff;background-color:<%= (entry.amount > 0) ? "green" : "red" %>"><%= entry.category.title %></td>
+<td style="color:#fff;background-color:<%= (entry.amount > 0) ? "green" : "red" %>"><%= entry.title %></td>
+<td style="text-align:right;color:#fff;background-color:<%= (entry.amount > 0) ? "green" : "red" %>""><%= entry.amount %></td>
+<td><%= link_to_remote "bearbeiten", :update => "entry_" + entry.id.to_s, :url => edit_entry_url(entry.id), :method => "get" %></td>
+<td><%= link_to "löschen", entry_path(entry), :method => "delete" %></td>

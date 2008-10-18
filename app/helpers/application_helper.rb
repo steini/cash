@@ -12,7 +12,7 @@ module ApplicationHelper
   end
   
   def balance_style_by_amount amount
-    amount >= 0 ? " style=\"color:green\"" : " style=\"color:red\""
+    amount >= 0 ? " style=\"background-color:green;text-align:right\"" : " style=\"background-color:red;text-align:right\""
   end
   
 end

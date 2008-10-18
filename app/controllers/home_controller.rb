@@ -4,12 +4,12 @@ class HomeController < ApplicationController
   def index
 
     @entries = Entry.find(:all, :limit => 20, :order => "created_at DESC")
-    
+
     @labels = []
-    @incomes = []
-    @spendings = []
-    @diffs = []
-    
+    @incomes = {}
+    @spendings = {}
+    @diffs = {}
+
     dates = []
 
     (0..11).each do |i|
@@ -18,20 +18,23 @@ class HomeController < ApplicationController
     end
 
     dates.each do |date|
-        @labels << date.month.to_s + "/" + date.year.to_s
-        @incomes << Entry.sum(:amount, :conditions => ["amount > 0 and month(date) = ? and year(date) = ?", date.month, date.year])
-        @spendings << Entry.sum(:amount, :conditions => ["amount < 0 and month(date) = ? and year(date) = ?", date.month, date.year])
-        @diffs << @spendings.last + @incomes.last
+
+      key = date.year.to_s + "-" + ((date.month > 9) ? date.month.to_s : "0" + date.month.to_s)
+
+      @labels << date.month.to_s + "/" + date.year.to_s
+      @incomes[key] = Entry.sum(:amount, :conditions => ["amount > 0 and month(date) = ? and year(date) = ?", date.month, date.year])
+      @spendings[key] = Entry.sum(:amount, :conditions => ["amount < 0 and month(date) = ? and year(date) = ?", date.month, date.year])
+      @diffs[key] = @spendings[key] + @incomes[key]
     end
-    
-    @total_income = @incomes.inject(0) do |sum, income|
+
+    @total_income = @incomes.values.inject(0) do |sum, income|
       sum + income
     end
-    
-    @total_spending = @spendings.inject(0) do |sum, spending|
+
+    @total_spending = @spendings.values.inject(0) do |sum, spending|
       sum + spending
     end
-    
+
   end
 
 end

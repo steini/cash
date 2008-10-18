@@ -1,0 +1,11 @@
+<td colspan="6">
+<% form_remote_for(@entry, :update => "entry_#{@entry.id}", :url => { :action => "update" } ) do |f| %>
+  <%= f.text_field :title %>
+<%= f.collection_select "category_id", @categories, :id, :title %>
+<%= f.text_field :amount %>
+<%= f.submit "Speichern" %>
+<%= link_to_remote "Abbrechen", :update => "entry_#{@entry.id}", :url => { :controller => "entries", :action => "cancel", :id => @entry.id } %>
+<% end  %>
+</td>
+
+

@@ -1,0 +1,42 @@
+<h1>Liste aller Einträge <%= @date.month  %>/<%= @date.year  %></h1>
+
+<p><%= error_messages_for :entry %></p>
+
+<% form_for(@entry) do |f| %>
+  <p>
+      <b>Titel</b><br />
+      <%= f.text_field :title %>
+    </p>
+
+    <p>
+      <b>Kategorie</b><br />
+      <%= f.collection_select "category_id", @categories, :id, :title %>
+    </p>
+
+    <p>
+      <b>Betrag</b><br />
+      <%= f.text_field :amount %>
+    </p>
+
+    <p>
+      <b>Datum:</b>
+      <%= f.date_select(:date, :order => [:day, :month, :year]) %>
+    </p>
+
+    <p>
+      <%= f.submit "Speichern" %>
+    </p>
+<% end %>
+<table border="1" cellpadding="2" cellspacing="0">
+  <thead>
+    <th>Datum</th>
+    <th>Kategorie</th>
+    <th>Beschreibung</th>
+    <th>Betrag</th>
+    <th>bearbeiten</th>
+    <th>löschen</th>
+  </thead>
+  <% @entries.each do |entry| %>
+    <tr id="entry_<%= entry.id %>"><%= render :partial => "entry", :locals => {:entry => entry }  %></tr>
+  <% end %>
+</table>

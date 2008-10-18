@@ -29,20 +29,20 @@
   </thead>
   <tr>
     <td>Einnahmen:</td>
-    <%- @incomes.each do |income| -%>
-      <td style="color:green"><%= income %></td>
+    <%- @incomes.keys.sort.reverse.each do |key| -%>
+      <td style="background-color:green;text-align:right"><%= link_to @incomes[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
   </tr>
   <tr>
     <td>Ausgaben:</td>
-    <%- @spendings.each do |spending| -%>
-      <td style="color:red"><%= spending %></td>
+    <%- @spendings.keys.sort.reverse.each do |key| -%>
+      <td style="background-color:red;text-align:right"><%= link_to @spendings[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
   </tr>
   <tr>
     <td>Differenz:</td>
-    <%- @diffs.each do |diff| -%>
-        <td<%= balance_style_by_amount diff %>><%= diff %></td>
+    <%- @diffs.keys.sort.reverse.each do |key| -%>
+        <td<%= balance_style_by_amount @diffs[key] %>><%= link_to @diffs[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
     </tr>
 </table>
@@ -54,7 +54,7 @@
 <%- else -%>
   <table border="1" cellpadding="2" cellspacing="0">
     <thead>
-        <th>besschreibung</th>
+        <th>beschreibung</th>
         <th>betrag</th>
         <th>kategorie</th>
         <th>wer?</th>

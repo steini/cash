@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default routes as the lowest priority.
 
+  map.connect "entries/cancel/:id", :controller => 'entries', :action => 'cancel'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
