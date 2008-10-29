@@ -1,22 +1,22 @@
 <ul>
-    <li><%= link_to "create cash entry", new_entry_url %></li>
-    <li><%= link_to "manage categories", new_category_path %></li>
+  <li><%= link_to "create cash entry", new_entry_url %></li>
+  <li><%= link_to "manage categories", new_category_path %></li>
 </ul>
 
 <h2>Ausgaben und Einnahmen gesamt</h2>
 <table border="1" cellpadding="2" cellspacing="0">
-    <tr>
-      <td>Einahmen:</td>
-      <td><%= @total_income %></td>
-    </tr>
-    <tr>
-      <td>Ausgaben:</td>
-      <td><%= @total_spending %></td>
-    </tr>
-    <tr>
-      <td>Differenz:</td>
-      <td<%= balance_style_by_amount @total_spending + @total_income %>><%= @total_spending + @total_income %></td>
-    </tr>
+  <tr>
+    <td>Einahmen:</td>
+    <td><%= @total_income %></td>
+  </tr>
+  <tr>
+    <td>Ausgaben:</td>
+    <td><%= @total_spending %></td>
+  </tr>
+  <tr>
+    <td>Differenz:</td>
+    <td<%= balance_style_by_amount @total_spending + @total_income %>><%= @total_spending + @total_income %></td>
+  </tr>
 </table>
 
 <h2>Ausgaben und Einahmen der letzten 12 Monate</h2>
@@ -30,21 +30,24 @@
   <tr>
     <td>Einnahmen:</td>
     <%- @incomes.keys.sort.reverse.each do |key| -%>
-      <td style="background-color:green;text-align:right"><%= link_to @incomes[key], {:controller => "entries", :date => key}, :class => "white" %></td>
+      <td style="background-color:green;text-align:right"><%= link_to "%.2f" % @incomes[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
   </tr>
   <tr>
     <td>Ausgaben:</td>
     <%- @spendings.keys.sort.reverse.each do |key| -%>
-      <td style="background-color:red;text-align:right"><%= link_to @spendings[key], {:controller => "entries", :date => key}, :class => "white" %></td>
+      <td style="background-color:red;text-align:right"><%= link_to "%.2f" % @spendings[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
   </tr>
   <tr>
     <td>Differenz:</td>
     <%- @diffs.keys.sort.reverse.each do |key| -%>
-        <td<%= balance_style_by_amount @diffs[key] %>><%= link_to @diffs[key], {:controller => "entries", :date => key}, :class => "white" %></td>
+      <td<%= balance_style_by_amount @diffs[key] %>><%= link_to "%.2f" % @diffs[key], {:controller => "entries", :date => key}, :class => "white" %></td>
     <%- end -%>
-    </tr>
+  </tr>
+  <tr>
+    <td colspan="12"><%= link_to("alle monate...", :controller => "stats") %></td>
+  </tr>
 </table>
 
 
@@ -54,13 +57,13 @@
 <%- else -%>
   <table border="1" cellpadding="2" cellspacing="0">
     <thead>
-        <th>beschreibung</th>
-        <th>betrag</th>
-        <th>kategorie</th>
-        <th>wer?</th>
-        <th>wann?</th>
-        <th>bearbeiten</th>
-        <th>löschen</th>
+      <th>beschreibung</th>
+      <th>betrag</th>
+      <th>kategorie</th>
+      <th>wer?</th>
+      <th>wann?</th>
+      <th>bearbeiten</th>
+      <th>löschen</th>
     </thead>
     <%- @entries.each do |entry| -%>
       <tr>

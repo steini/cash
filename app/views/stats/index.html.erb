@@ -1,0 +1,18 @@
+<h2>Alle Ausgaben und Einahmen gruppiert nach Monaten</h2>
+<table border="1" cellpadding="2" cellspacing="0">
+  <thead>
+    <th>Datum</th>
+    <th>Einnahmen</th>
+    <th>Ausgaben</th>
+    <th>Differenz</th>
+  </thead>
+  <% @data.each do |row| %>
+    <tr>
+      <td style="text-align:right"><%=  row["date"] %></td>
+      <td style="text-align:right; background-color: green"><%=  link_to("%.2f" % row["incomes"], {:controller => "entries", :date => row["date"].split("/").reverse.join("-")}, :class => "white") %></td>
+      <td style="text-align:right; background-color: red"><%=  link_to("%.2f" % row["spendings"], {:controller => "entries", :date => row["date"].split("/").reverse.join("-")}, :class => "white") %></td>
+      <td style="text-align:right; background-color: <%= (row["sum"].to_i < 0) ? "red" : "green" %>"><%=  link_to("%.2f" % row["sum"], {:controller => "entries", :date => row["date"].split("/").reverse.join("-")}, :class => "white") %></td>
+    </tr>
+  <% end %>
+</table>
+
