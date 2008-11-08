@@ -7,15 +7,15 @@
 <table border="1" cellpadding="2" cellspacing="0">
   <tr>
     <td>Einahmen:</td>
-    <td><%= @total_income %></td>
+    <td><%= "%.2f" % @total_income %></td>
   </tr>
   <tr>
     <td>Ausgaben:</td>
-    <td><%= @total_spending %></td>
+    <td><%= "%.2f" % @total_spending %></td>
   </tr>
   <tr>
     <td>Differenz:</td>
-    <td<%= balance_style_by_amount @total_spending + @total_income %>><%= @total_spending + @total_income %></td>
+    <td<%= balance_style_by_amount @total_spending + @total_income %>><%= "%.2f" %  (@total_spending + @total_income) %></td>
   </tr>
 </table>
 
